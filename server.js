@@ -4,6 +4,8 @@ const cors = require('cors');
 const axios = require('axios');
 const mongoose = require('mongoose');
 
+const spotsController = require('./routes/SFspotsController');
+
 // database connection
 mongoose.connect('mongodb://localhost/SFspotsDB', { useNewUrlParser: true })
   .then(mongo => {
@@ -21,21 +23,16 @@ server.use(express.json());
 // prevent CORS errors
 server.use(cors());
 
-
-// test Api call for a single photo:
-//`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=cafe%20enchante&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=${apiKey}`
-
 // test api:
 server.get('/test', (req, res) => {
   res.json('API is running');
 })
 
-// Get the first photo:
-server.get('/', (req, res) => {
+server.use('/api/spots', spotsController);
 
-})
-
-
+// not implemented yet
+// server.get('/', (req, res) => {
+// })
 
 const port = process.env.PORT || 5000;
 

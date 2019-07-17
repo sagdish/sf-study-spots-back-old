@@ -25,6 +25,6 @@ const options = {
 mongoose.set('useCreateIndex', true);
 
 const sfSpotsSchema = new mongoose.Schema(definition, options);
-const sfSpotsModel = mongoose.model(Spot, sfSpotsSchema);
+const sfSpotsModel = mongoose.model('Spot', sfSpotsSchema);
 
 module.exports = sfSpotsModel;
