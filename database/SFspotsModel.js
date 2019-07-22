@@ -5,6 +5,13 @@ const definition = {
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
+  neighborhood: {
+    type: String,
+  },
   position: {
     lat: Number,
     lng: Number,
