@@ -22,6 +22,10 @@ const definition = {
   photos: [{
     ref: String
   }],
+  favorite: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 const options = {
