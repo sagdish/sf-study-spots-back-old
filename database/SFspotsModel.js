@@ -30,6 +30,7 @@ const definition = {
 
 const options = {
   timestamps: true,
+  strict: false,
 };
 
 // Fix DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead
