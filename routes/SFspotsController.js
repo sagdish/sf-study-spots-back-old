@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const axios = require('axios');
 
 const Spot = require('../database/SFspotsModel');
 
@@ -24,5 +25,16 @@ router.route('/')
         res.status(500).json({ error: err });
       });
   });
+
+  router.route('/coffeelist')
+    .get((req, res) => {
+      axios.get(
+        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.790754,-122.451414&name=&keyword=study,quiet&rankby=distance&key=${process.env.gMapsApi}&type=cafe`
+      ).then(response => {
+        // console.log(response.data)
+        res.json(response.data.results)
+      })
+
+    })
 
   module.exports = router;

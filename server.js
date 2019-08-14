@@ -1,8 +1,8 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
-const axios = require('axios');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const spotsController = require('./routes/SFspotsController');
 
@@ -29,10 +29,6 @@ server.get('/test', (req, res) => {
 })
 
 server.use('/api/spots', spotsController);
-
-// not implemented yet
-// server.get('/', (req, res) => {
-// })
 
 const port = process.env.PORT || 5000;
 
