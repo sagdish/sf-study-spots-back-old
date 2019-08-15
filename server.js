@@ -30,7 +30,7 @@ server.use(express.json());
 server.use(cors());
 
 // test api:
-server.get('/test', (req, res) => {
+server.get('/', (req, res) => {
   res.json('API is running');
 })
 
