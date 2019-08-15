@@ -6,8 +6,14 @@ require('dotenv').config();
 
 const spotsController = require('./routes/SFspotsController');
 
-// database connection
-mongoose.connect('mongodb://localhost/SFspotsDB', { useNewUrlParser: true })
+// local database connection: (replace those lines to switch)
+// mongoose.connect('mongodb://localhost/SFspotsDB', { useNewUrlParser: true })
+
+// string path to connect to remote database:
+const dataBase = process.env.DBuri;
+
+// remote database connection:
+mongoose.connect(dataBase, { useNewUrlParser: true })
   .then(mongo => {
     console.log("\n === connected to 'SFspotsDB' database")
   })
