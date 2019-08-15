@@ -3,6 +3,9 @@ const axios = require('axios');
 
 const Spot = require('../database/SFspotsModel');
 
+// get google maps api key:
+const mapsApi = process.env.gMapsApi;
+
 router.route('/')
   .get((req, res) => {
     Spot.find()
@@ -26,15 +29,15 @@ router.route('/')
       });
   });
 
-  router.route('/coffeelist')
-    .get((req, res) => {
-      axios.get(
-        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.790754,-122.451414&name=&keyword=study,quiet&rankby=distance&key=${process.env.gMapsApi}&type=cafe`
-      ).then(response => {
-        // console.log(response.data)
-        res.json(response.data.results)
-      })
-
+router.route('/coffeelist')
+  .get((req, res) => {
+    axios.get(
+      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.790754,-122.451414&name=&keyword=study,quiet&rankby=distance&key=${mapsApi}&type=cafe`
+    ).then(response => {
+      // console.log(response.data)
+      res.json(response.data.results)
     })
+
+  })
 
   module.exports = router;
