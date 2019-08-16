@@ -1,10 +1,23 @@
 const router = require('express').Router();
 const axios = require('axios');
 
+const mapsApi = process.env.gMapsApi;
+
+const request = require('request');
+const options = {
+  proxy: process.env.QUOTAGUARDSTATIC_URL,
+  url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.790754,-122.451414&name=&keyword=study,quiet&rankby=distance&key=${mapsApi}&type=cafe`,
+  headers: {
+    'User-Agent': 'node.js'
+  }
+}
+
+
+
+
 const Spot = require('../database/SFspotsModel');
 
 // get google maps api key:
-const mapsApi = process.env.gMapsApi;
 
 router.route('/')
   .get((req, res) => {
@@ -31,15 +44,18 @@ router.route('/')
 
 router.route('/coffeelist')
   .get((req, res) => {
-    axios({
-      method: 'get',
-      proxy: process.env.QUOTAGUARDSTATIC_URL,
-      url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.790754,-122.451414&name=&keyword=study,quiet&rankby=distance&key=${mapsApi}&type=cafe&sensor=true/false`,
-      responseType: 'json'
-    }).then(response => {
-      console.log(response.data)
-      res.json(response.data.results)
+    request(options, (err, response, body) => {
+      if (!err && response.statusCode == 200) {
+        res.send(body);
+      }
     })
+
+    // axios.get(
+    //   `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.790754,-122.451414&name=&keyword=study,quiet&rankby=distance&key=${process.env.gMapsApi}&type=cafe`
+    // ).then(response => {
+    //   console.log(process.env.QUOTAGUARDSTATIC_URL)
+    //   res.json(response.data.results)
+    // })
 
   })
 
