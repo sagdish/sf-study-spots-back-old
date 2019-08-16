@@ -34,7 +34,7 @@ router.route('/coffeelist')
     axios.get(
       `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.790754,-122.451414&name=&keyword=study,quiet&rankby=distance&key=${mapsApi}&type=cafe&sensor=true/false`
     ).then(response => {
-      // console.log(response.data)
+      console.log(response.data)
       res.json(response.data.results)
     })
 
