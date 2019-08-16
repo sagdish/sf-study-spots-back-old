@@ -6,7 +6,7 @@ const mapsApi = process.env.gMapsApi;
 const request = require('request');
 const options = {
   proxy: process.env.FIXIE_URL,
-  url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.790754,-122.451414&name=&keyword=study,quiet&rankby=distance&key=${mapsApi}&type=cafe`,
+  url: `http://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.790754,-122.451414&name=&keyword=study,quiet&rankby=distance&key=${mapsApi}&type=cafe`,
   // headers: {
   //   'User-Agent': 'node.js'
   // }
