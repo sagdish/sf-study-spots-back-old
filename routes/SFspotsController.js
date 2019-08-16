@@ -29,18 +29,14 @@ router.route('/')
       });
   });
 
-router.route('/coffeelist', { 
-  params: {
-    proxy: process.env.QUOTAGUARDSTATIC_URL,
-    headers: {
-      'User-Agent': 'node.js'
-    }
-  }
-})
+router.route('/coffeelist')
   .get((req, res) => {
-    axios.get(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.790754,-122.451414&name=&keyword=study,quiet&rankby=distance&key=${mapsApi}&type=cafe&sensor=true/false`
-    ).then(response => {
+    axios({
+      method: 'get',
+      proxy: process.env.QUOTAGUARDSTATIC_URL,
+      url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.790754,-122.451414&name=&keyword=study,quiet&rankby=distance&key=${mapsApi}&type=cafe&sensor=true/false`,
+      responseType: 'json'
+    }).then(response => {
       console.log(response.data)
       res.json(response.data.results)
     })
