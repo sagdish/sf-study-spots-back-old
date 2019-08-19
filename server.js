@@ -29,12 +29,6 @@ server.use(express.json());
 // prevent CORS errors
 server.use(cors());
 
-//attemp to fix
-server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
-
 // test api:
 server.get('/', (req, res) => {
   res.json('API is running');
