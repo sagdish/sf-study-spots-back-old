@@ -29,8 +29,7 @@ router.route('/')
 router.route('/coffeelist')
   .get((req, res) => {
     axios.get(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.790754,-122.451414&name=&keyword=study,quiet&rankby=distance&key=${process.env.gMapsApi}&type=cafe`,
-      { 'params': {'sortOrder': 'LAST_NAME_ASCENDING'}}
+      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=37.790754,-122.451414&name=&keyword=study,quiet&rankby=distance&key=${process.env.gMapsApi}&type=cafe`
     ).then(response => {
       res.json(response.data.results)
     })
